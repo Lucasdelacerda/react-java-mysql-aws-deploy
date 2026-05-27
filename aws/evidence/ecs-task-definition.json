@@ -1,0 +1,141 @@
+﻿{
+    "taskDefinition": {
+        "taskDefinitionArn": "arn:aws:ecs:us-east-2:929123273508:task-definition/react-java-mysql:2",
+        "containerDefinitions": [
+            {
+                "name": "frontend",
+                "image": "929123273508.dkr.ecr.us-east-2.amazonaws.com/react-java-mysql-frontend:ecs",
+                "cpu": 0,
+                "portMappings": [
+                    {
+                        "containerPort": 3000,
+                        "hostPort": 3000,
+                        "protocol": "tcp"
+                    }
+                ],
+                "essential": true,
+                "environment": [],
+                "mountPoints": [],
+                "volumesFrom": [],
+                "dependsOn": [
+                    {
+                        "containerName": "backend",
+                        "condition": "START"
+                    }
+                ],
+                "systemControls": []
+            },
+            {
+                "name": "backend",
+                "image": "929123273508.dkr.ecr.us-east-2.amazonaws.com/react-java-mysql-backend:latest",
+                "cpu": 0,
+                "portMappings": [
+                    {
+                        "containerPort": 8080,
+                        "hostPort": 8080,
+                        "protocol": "tcp"
+                    }
+                ],
+                "essential": true,
+                "environment": [
+                    {
+                        "name": "MYSQL_HOST",
+                        "value": "127.0.0.1"
+                    },
+                    {
+                        "name": "MYSQL_PASSWORD",
+                        "value": "db-57xsl"
+                    }
+                ],
+                "mountPoints": [],
+                "volumesFrom": [],
+                "dependsOn": [
+                    {
+                        "containerName": "db",
+                        "condition": "HEALTHY"
+                    }
+                ],
+                "systemControls": []
+            },
+            {
+                "name": "db",
+                "image": "mariadb:10.6.4-focal",
+                "cpu": 0,
+                "portMappings": [
+                    {
+                        "containerPort": 3306,
+                        "hostPort": 3306,
+                        "protocol": "tcp"
+                    }
+                ],
+                "essential": true,
+                "environment": [
+                    {
+                        "name": "MYSQL_DATABASE",
+                        "value": "example"
+                    },
+                    {
+                        "name": "MYSQL_ROOT_PASSWORD",
+                        "value": "db-57xsl"
+                    }
+                ],
+                "mountPoints": [],
+                "volumesFrom": [],
+                "healthCheck": {
+                    "command": [
+                        "CMD-SHELL",
+                        "mysqladmin ping -h 127.0.0.1 -uroot -p$MYSQL_ROOT_PASSWORD --silent"
+                    ],
+                    "interval": 10,
+                    "timeout": 5,
+                    "retries": 5,
+                    "startPeriod": 30
+                },
+                "systemControls": []
+            }
+        ],
+        "family": "react-java-mysql",
+        "executionRoleArn": "arn:aws:iam::929123273508:role/ecsTaskExecutionRole",
+        "networkMode": "awsvpc",
+        "revision": 2,
+        "volumes": [],
+        "status": "ACTIVE",
+        "requiresAttributes": [
+            {
+                "name": "com.amazonaws.ecs.capability.ecr-auth"
+            },
+            {
+                "name": "ecs.capability.container-ordering"
+            },
+            {
+                "name": "ecs.capability.container-health-check"
+            },
+            {
+                "name": "ecs.capability.execution-role-ecr-pull"
+            },
+            {
+                "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+            },
+            {
+                "name": "ecs.capability.task-eni"
+            },
+            {
+                "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
+            }
+        ],
+        "placementConstraints": [],
+        "compatibilities": [
+            "EC2",
+            "FARGATE",
+            "MANAGED_INSTANCES"
+        ],
+        "requiresCompatibilities": [
+            "FARGATE"
+        ],
+        "cpu": "2048",
+        "memory": "4096",
+        "registeredAt": 1779912743.484,
+        "registeredBy": "arn:aws:iam::929123273508:user/acess-test"
+    },
+    "tags": []
+}

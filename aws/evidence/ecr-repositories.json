@@ -1,0 +1,32 @@
+﻿{
+    "repositories": [
+        {
+            "repositoryArn": "arn:aws:ecr:us-east-2:929123273508:repository/react-java-mysql-frontend",
+            "registryId": "929123273508",
+            "repositoryName": "react-java-mysql-frontend",
+            "repositoryUri": "929123273508.dkr.ecr.us-east-2.amazonaws.com/react-java-mysql-frontend",
+            "createdAt": 1779911944.412,
+            "imageTagMutability": "MUTABLE",
+            "imageScanningConfiguration": {
+                "scanOnPush": false
+            },
+            "encryptionConfiguration": {
+                "encryptionType": "AES256"
+            }
+        },
+        {
+            "repositoryArn": "arn:aws:ecr:us-east-2:929123273508:repository/react-java-mysql-backend",
+            "registryId": "929123273508",
+            "repositoryName": "react-java-mysql-backend",
+            "repositoryUri": "929123273508.dkr.ecr.us-east-2.amazonaws.com/react-java-mysql-backend",
+            "createdAt": 1779911953.747,
+            "imageTagMutability": "MUTABLE",
+            "imageScanningConfiguration": {
+                "scanOnPush": false
+            },
+            "encryptionConfiguration": {
+                "encryptionType": "AES256"
+            }
+        }
+    ]
+}

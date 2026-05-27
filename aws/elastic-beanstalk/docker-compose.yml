@@ -1,0 +1,32 @@
+services:
+  db:
+    image: mariadb:10.6.4-focal
+    environment:
+      MYSQL_DATABASE: example
+      MYSQL_ROOT_PASSWORD: db-57xsl
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p$${MYSQL_ROOT_PASSWORD} --silent"]
+      interval: 5s
+      retries: 10
+      start_period: 30s
+    volumes:
+      - db-data:/var/lib/mysql
+
+  backend:
+    image: 929123273508.dkr.ecr.us-east-2.amazonaws.com/react-java-mysql-backend:latest
+    environment:
+      MYSQL_HOST: db
+      MYSQL_PASSWORD: db-57xsl
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+    image: 929123273508.dkr.ecr.us-east-2.amazonaws.com/react-java-mysql-frontend:latest
+    ports:
+      - "80:3000"
+    depends_on:
+      - backend
+
+volumes:
+  db-data: {}

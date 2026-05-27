@@ -1,0 +1,27 @@
+﻿{
+    "Environments": [
+        {
+            "EnvironmentName": "react-java-mysql-eb-env",
+            "EnvironmentId": "e-3tj2sz52m4",
+            "ApplicationName": "react-java-mysql-eb",
+            "VersionLabel": "v1-20260527-ec2-ecr",
+            "SolutionStackName": "64bit Amazon Linux 2023 v4.13.0 running Docker",
+            "PlatformArn": "arn:aws:elasticbeanstalk:us-east-2::platform/Docker running on 64bit Amazon Linux 2023/4.13.0",
+            "EndpointURL": "18.222.79.69",
+            "CNAME": "react-java-mysql-eb-env.eba-5ebnn3ch.us-east-2.elasticbeanstalk.com",
+            "DateCreated": "2026-05-27T20:07:01.945Z",
+            "DateUpdated": "2026-05-27T20:10:02.682Z",
+            "Status": "Ready",
+            "AbortableOperationInProgress": false,
+            "Health": "Green",
+            "HealthStatus": "Ok",
+            "Tier": {
+                "Name": "WebServer",
+                "Type": "Standard",
+                "Version": "1.0"
+            },
+            "EnvironmentLinks": [],
+            "EnvironmentArn": "arn:aws:elasticbeanstalk:us-east-2:929123273508:environment/react-java-mysql-eb/react-java-mysql-eb-env"
+        }
+    ]
+}

@@ -19,7 +19,7 @@
     },
     {
       "name": "backend",
-      "image": "SEU_REGISTRY/react-java-mysql-backend:latest",
+      "image": "929123273508.dkr.ecr.us-east-2.amazonaws.com/react-java-mysql-backend:latest",
       "essential": true,
       "memory": 512,
       "environment": [
@@ -30,7 +30,7 @@
     },
     {
       "name": "frontend",
-      "image": "SEU_REGISTRY/react-java-mysql-frontend:latest",
+      "image": "929123273508.dkr.ecr.us-east-2.amazonaws.com/react-java-mysql-frontend:latest",
       "essential": true,
       "memory": 256,
       "portMappings": [

@@ -27,11 +27,18 @@ Foi criado o arquivo `compose.prod.yaml` para subir os tres servicos com Docker 
 
 ### Elastic Beanstalk
 
-Foi criado o arquivo `Dockerrun.aws.json` para uso em ambiente Docker multicontainer, com definicao dos containers `frontend`, `backend` e `db`.
+Foi criado um pacote Docker Compose em `aws/elastic-beanstalk/docker-compose.yml`, usando imagens publicadas no Amazon ECR. O ambiente foi criado na plataforma Docker do Elastic Beanstalk e ficou com status saudavel.
 
 ### ECS
 
-Foi criado o arquivo `aws/ecs-task-definition.json` como modelo de task definition Fargate, contendo os tres containers, portas e variaveis de ambiente necessarias.
+Foi criado o arquivo `aws/ecs-task-definition.json` como task definition Fargate, contendo os tres containers, portas, variaveis de ambiente, healthcheck do banco e imagens publicadas no Amazon ECR.
+
+### ECR
+
+Foram criados dois repositorios no Amazon ECR:
+
+- `929123273508.dkr.ecr.us-east-2.amazonaws.com/react-java-mysql-frontend`
+- `929123273508.dkr.ecr.us-east-2.amazonaws.com/react-java-mysql-backend`
 
 ## Passos executados para implantacao
 
@@ -67,8 +74,8 @@ Foi criado o arquivo `aws/ecs-task-definition.json` como modelo de task definiti
 
 - EC2: preencher apos deploy
 - EC2: http://3.18.106.130:3000
-- Elastic Beanstalk: preencher apos deploy
-- ECS: preencher apos deploy
+- Elastic Beanstalk: http://react-java-mysql-eb-env.eba-5ebnn3ch.us-east-2.elasticbeanstalk.com
+- ECS: http://18.218.116.212:3000
 
 ## Dificuldades encontradas e solucoes
 
@@ -127,3 +134,40 @@ Validacoes:
 - `http://3.18.106.130:3000` retornou HTTP 200.
 - `http://3.18.106.130:3000/api` retornou `{"id":1,"name":"Docker"}`.
 - Print da aplicacao na EC2 salvo em `aws/ec2-public-app.png`.
+
+## Teste Elastic Beanstalk realizado
+
+Ambiente testado em 27/05/2026:
+
+- Aplicacao: `react-java-mysql-eb`
+- Ambiente: `react-java-mysql-eb-env`
+- Status: `Ready`
+- Health: `Green`
+- URL: `http://react-java-mysql-eb-env.eba-5ebnn3ch.us-east-2.elasticbeanstalk.com`
+
+Validacoes:
+
+- A URL publica retornou HTTP 200.
+- A rota `/api` retornou `{"id":1,"name":"Docker"}`.
+- Print salvo em `aws/elastic-beanstalk-app.png`.
+- Evidencia tecnica salva em `aws/evidence/elastic-beanstalk-environment.json`.
+
+## Teste ECS realizado
+
+Ambiente testado em 27/05/2026:
+
+- Cluster: `react-java-mysql-cluster`
+- Service: `react-java-mysql-service`
+- Task definition: `react-java-mysql:2`
+- Launch type: `FARGATE`
+- Task status: `RUNNING`
+- Health: `HEALTHY`
+- Security group: porta 3000 liberada para acesso publico.
+- URL: `http://18.218.116.212:3000`
+
+Validacoes:
+
+- A URL publica retornou HTTP 200.
+- A rota `/api` retornou `{"id":1,"name":"Docker"}`.
+- Print salvo em `aws/ecs-public-app.png`.
+- Evidencias tecnicas salvas em `aws/evidence/ecs-service.json` e `aws/evidence/ecs-task-definition.json`.

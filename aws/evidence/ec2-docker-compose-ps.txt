@@ -1,0 +1,4 @@
+﻿NAME                          IMAGE                              COMMAND                  SERVICE    CREATED       STATUS                 PORTS
+react-java-mysql-backend-1    react-java-mysql-backend:latest    "java -cp app:app/li…"   backend    2 hours ago   Up 2 hours             8080/tcp
+react-java-mysql-db-1         mariadb:10.6.4-focal               "docker-entrypoint.s…"   db         2 hours ago   Up 2 hours (healthy)   3306/tcp
+react-java-mysql-frontend-1   react-java-mysql-frontend:latest   "nginx -g 'daemon of…"   frontend   2 hours ago   Up 2 hours             80/tcp, 0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp

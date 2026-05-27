@@ -1,0 +1,134 @@
+﻿{
+    "services": [
+        {
+            "serviceArn": "arn:aws:ecs:us-east-2:929123273508:service/react-java-mysql-cluster/react-java-mysql-service",
+            "serviceName": "react-java-mysql-service",
+            "clusterArn": "arn:aws:ecs:us-east-2:929123273508:cluster/react-java-mysql-cluster",
+            "loadBalancers": [],
+            "serviceRegistries": [],
+            "status": "ACTIVE",
+            "desiredCount": 1,
+            "runningCount": 1,
+            "pendingCount": 0,
+            "launchType": "FARGATE",
+            "platformVersion": "LATEST",
+            "platformFamily": "Linux",
+            "taskDefinition": "arn:aws:ecs:us-east-2:929123273508:task-definition/react-java-mysql:2",
+            "deploymentConfiguration": {
+                "deploymentCircuitBreaker": {
+                    "enable": false,
+                    "rollback": false
+                },
+                "maximumPercent": 200,
+                "minimumHealthyPercent": 100,
+                "strategy": "ROLLING",
+                "bakeTimeInMinutes": 0
+            },
+            "deployments": [
+                {
+                    "id": "ecs-svc/6117287494175210900",
+                    "status": "PRIMARY",
+                    "taskDefinition": "arn:aws:ecs:us-east-2:929123273508:task-definition/react-java-mysql:2",
+                    "desiredCount": 1,
+                    "pendingCount": 0,
+                    "runningCount": 1,
+                    "failedTasks": 0,
+                    "createdAt": 1779912752.127,
+                    "updatedAt": 1779912904.729,
+                    "launchType": "FARGATE",
+                    "platformVersion": "1.4.0",
+                    "platformFamily": "Linux",
+                    "networkConfiguration": {
+                        "awsvpcConfiguration": {
+                            "subnets": [
+                                "subnet-0a6f8ac34c3cb2e07",
+                                "subnet-05d406ca63f65e907",
+                                "subnet-06977a3e934b93004"
+                            ],
+                            "securityGroups": [
+                                "sg-0e775174946715b20"
+                            ],
+                            "assignPublicIp": "ENABLED"
+                        }
+                    },
+                    "rolloutState": "COMPLETED",
+                    "rolloutStateReason": "ECS deployment ecs-svc/6117287494175210900 completed."
+                }
+            ],
+            "roleArn": "arn:aws:iam::929123273508:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+            "events": [
+                {
+                    "id": "9bc64654-c5b6-4f04-a6d4-6a55a5d775cd",
+                    "createdAt": 1779912904.739,
+                    "message": "(service react-java-mysql-service) has reached a steady state."
+                },
+                {
+                    "id": "947485d4-9b95-422c-87bf-8c99b526c04d",
+                    "createdAt": 1779912904.738,
+                    "message": "(service react-java-mysql-service) (deployment ecs-svc/6117287494175210900) deployment completed."
+                },
+                {
+                    "id": "d3bb04aa-b64b-4fbd-a57e-adf1743f18a9",
+                    "createdAt": 1779912771.848,
+                    "message": "(service react-java-mysql-service) has started 1 tasks: (task 4ca5a4b29f47470a9a9c0d0d2e73f5b3)."
+                },
+                {
+                    "id": "2637383b-faf2-4db1-9f47-7d3a5cbd8135",
+                    "createdAt": 1779912748.318,
+                    "message": "(service react-java-mysql-service) has reached a steady state."
+                },
+                {
+                    "id": "617b6b5f-a27c-4ef1-8c76-44602800056c",
+                    "createdAt": 1779912748.317,
+                    "message": "(service react-java-mysql-service) (deployment ecs-svc/6409049429887616377) deployment completed."
+                },
+                {
+                    "id": "a984f8f3-8844-456b-9e5d-38d62bf1c2a6",
+                    "createdAt": 1779912688.769,
+                    "message": "(service react-java-mysql-service) has started 1 tasks: (task 25ead045481a40c6bc58f49743097f4b)."
+                },
+                {
+                    "id": "96477190-3ffd-4a60-aad4-dfa3806ed0dd",
+                    "createdAt": 1779912595.885,
+                    "message": "(service react-java-mysql-service) has started 1 tasks: (task 4642a671b1ac4a81985456cfc03d623b)."
+                }
+            ],
+            "createdAt": 1779912580.624,
+            "currentServiceRevisions": [
+                {
+                    "arn": "arn:aws:ecs:us-east-2:929123273508:service-revision/react-java-mysql-cluster/react-java-mysql-service/6117287494175210900",
+                    "requestedTaskCount": 1,
+                    "runningTaskCount": 1,
+                    "pendingTaskCount": 0
+                }
+            ],
+            "placementConstraints": [],
+            "placementStrategy": [],
+            "networkConfiguration": {
+                "awsvpcConfiguration": {
+                    "subnets": [
+                        "subnet-0a6f8ac34c3cb2e07",
+                        "subnet-05d406ca63f65e907",
+                        "subnet-06977a3e934b93004"
+                    ],
+                    "securityGroups": [
+                        "sg-0e775174946715b20"
+                    ],
+                    "assignPublicIp": "ENABLED"
+                }
+            },
+            "healthCheckGracePeriodSeconds": 0,
+            "schedulingStrategy": "REPLICA",
+            "deploymentController": {
+                "type": "ECS"
+            },
+            "createdBy": "arn:aws:iam::929123273508:user/acess-test",
+            "enableECSManagedTags": false,
+            "propagateTags": "NONE",
+            "enableExecuteCommand": false,
+            "availabilityZoneRebalancing": "ENABLED",
+            "resourceManagementType": "CUSTOMER"
+        }
+    ],
+    "failures": []
+}

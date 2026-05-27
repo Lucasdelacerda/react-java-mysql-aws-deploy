@@ -2,13 +2,13 @@
   "family": "react-java-mysql",
   "networkMode": "awsvpc",
   "requiresCompatibilities": ["FARGATE"],
-  "cpu": "1024",
-  "memory": "2048",
-  "executionRoleArn": "arn:aws:iam::ACCOUNT_ID:role/ecsTaskExecutionRole",
+  "cpu": "2048",
+  "memory": "4096",
+  "executionRoleArn": "arn:aws:iam::929123273508:role/ecsTaskExecutionRole",
   "containerDefinitions": [
     {
       "name": "frontend",
-      "image": "ACCOUNT_ID.dkr.ecr.REGION.amazonaws.com/react-java-mysql-frontend:latest",
+      "image": "929123273508.dkr.ecr.us-east-2.amazonaws.com/react-java-mysql-frontend:ecs",
       "essential": true,
       "portMappings": [
         {
@@ -26,7 +26,7 @@
     },
     {
       "name": "backend",
-      "image": "ACCOUNT_ID.dkr.ecr.REGION.amazonaws.com/react-java-mysql-backend:latest",
+      "image": "929123273508.dkr.ecr.us-east-2.amazonaws.com/react-java-mysql-backend:latest",
       "essential": true,
       "environment": [
         { "name": "MYSQL_HOST", "value": "127.0.0.1" },
@@ -42,7 +42,7 @@
       "dependsOn": [
         {
           "containerName": "db",
-          "condition": "START"
+          "condition": "HEALTHY"
         }
       ]
     },
@@ -54,6 +54,13 @@
         { "name": "MYSQL_DATABASE", "value": "example" },
         { "name": "MYSQL_ROOT_PASSWORD", "value": "db-57xsl" }
       ],
+      "healthCheck": {
+        "command": ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p$MYSQL_ROOT_PASSWORD --silent"],
+        "interval": 10,
+        "timeout": 5,
+        "retries": 5,
+        "startPeriod": 30
+      },
       "portMappings": [
         {
           "containerPort": 3306,

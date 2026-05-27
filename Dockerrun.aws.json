@@ -1,0 +1,53 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "db",
+      "image": "mariadb:10.6.4-focal",
+      "essential": true,
+      "memory": 512,
+      "environment": [
+        { "name": "MYSQL_DATABASE", "value": "example" },
+        { "name": "MYSQL_ROOT_PASSWORD", "value": "db-57xsl" }
+      ],
+      "mountPoints": [
+        {
+          "sourceVolume": "db-data",
+          "containerPath": "/var/lib/mysql"
+        }
+      ]
+    },
+    {
+      "name": "backend",
+      "image": "SEU_REGISTRY/react-java-mysql-backend:latest",
+      "essential": true,
+      "memory": 512,
+      "environment": [
+        { "name": "MYSQL_HOST", "value": "db" },
+        { "name": "MYSQL_PASSWORD", "value": "db-57xsl" }
+      ],
+      "links": ["db"]
+    },
+    {
+      "name": "frontend",
+      "image": "SEU_REGISTRY/react-java-mysql-frontend:latest",
+      "essential": true,
+      "memory": 256,
+      "portMappings": [
+        {
+          "hostPort": 3000,
+          "containerPort": 3000
+        }
+      ],
+      "links": ["backend"]
+    }
+  ],
+  "volumes": [
+    {
+      "name": "db-data",
+      "host": {
+        "sourcePath": "/var/app/db-data"
+      }
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+services:
+  backend:
+    build: backend
+    image: ${BACKEND_IMAGE:-react-java-mysql-backend:latest}
+    restart: always
+    environment:
+      MYSQL_HOST: db
+      MYSQL_PASSWORD: ${MYSQL_ROOT_PASSWORD:-db-57xsl}
+    networks:
+      - react-spring
+      - spring-mysql
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: mariadb:10.6.4-focal
+    environment:
+      MYSQL_DATABASE: example
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-db-57xsl}
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p$${MYSQL_ROOT_PASSWORD} --silent"]
+      interval: 3s
+      retries: 5
+      start_period: 30s
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - spring-mysql
+
+  frontend:
+    build:
+      context: frontend
+    image: ${FRONTEND_IMAGE:-react-java-mysql-frontend:latest}
+    restart: always
+    ports:
+      - "3000:3000"
+    networks:
+      - react-spring
+    depends_on:
+      - backend
+
+volumes:
+  db-data: {}
+
+networks:
+  react-spring: {}
+  spring-mysql: {}

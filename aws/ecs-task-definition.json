@@ -1,0 +1,66 @@
+{
+  "family": "react-java-mysql",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "1024",
+  "memory": "2048",
+  "executionRoleArn": "arn:aws:iam::ACCOUNT_ID:role/ecsTaskExecutionRole",
+  "containerDefinitions": [
+    {
+      "name": "frontend",
+      "image": "ACCOUNT_ID.dkr.ecr.REGION.amazonaws.com/react-java-mysql-frontend:latest",
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": 3000,
+          "hostPort": 3000,
+          "protocol": "tcp"
+        }
+      ],
+      "dependsOn": [
+        {
+          "containerName": "backend",
+          "condition": "START"
+        }
+      ]
+    },
+    {
+      "name": "backend",
+      "image": "ACCOUNT_ID.dkr.ecr.REGION.amazonaws.com/react-java-mysql-backend:latest",
+      "essential": true,
+      "environment": [
+        { "name": "MYSQL_HOST", "value": "127.0.0.1" },
+        { "name": "MYSQL_PASSWORD", "value": "db-57xsl" }
+      ],
+      "portMappings": [
+        {
+          "containerPort": 8080,
+          "hostPort": 8080,
+          "protocol": "tcp"
+        }
+      ],
+      "dependsOn": [
+        {
+          "containerName": "db",
+          "condition": "START"
+        }
+      ]
+    },
+    {
+      "name": "db",
+      "image": "mariadb:10.6.4-focal",
+      "essential": true,
+      "environment": [
+        { "name": "MYSQL_DATABASE", "value": "example" },
+        { "name": "MYSQL_ROOT_PASSWORD", "value": "db-57xsl" }
+      ],
+      "portMappings": [
+        {
+          "containerPort": 3306,
+          "hostPort": 3306,
+          "protocol": "tcp"
+        }
+      ]
+    }
+  ]
+}

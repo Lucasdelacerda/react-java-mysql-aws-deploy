@@ -66,6 +66,7 @@ Foi criado o arquivo `aws/ecs-task-definition.json` como modelo de task definiti
 ## URLs publicas ou endpoints
 
 - EC2: preencher apos deploy
+- EC2: http://3.18.106.130:3000
 - Elastic Beanstalk: preencher apos deploy
 - ECS: preencher apos deploy
 
@@ -108,3 +109,21 @@ Validacoes:
 - `http://localhost:3000` retornou HTTP 200.
 - `http://localhost:3000/api` retornou `{"id":1,"name":"Docker"}`.
 - Print local salvo em `aws/app-localhost-3000.png`.
+
+## Teste EC2 realizado
+
+Ambiente testado em 27/05/2026 na instancia EC2 `3.18.106.130`.
+
+Resultado dos containers na EC2:
+
+```text
+react-java-mysql-frontend-1   Up             0.0.0.0:3000->3000/tcp
+react-java-mysql-backend-1    Up             8080/tcp
+react-java-mysql-db-1         Up (healthy)   3306/tcp
+```
+
+Validacoes:
+
+- `http://3.18.106.130:3000` retornou HTTP 200.
+- `http://3.18.106.130:3000/api` retornou `{"id":1,"name":"Docker"}`.
+- Print da aplicacao na EC2 salvo em `aws/ec2-public-app.png`.

@@ -84,15 +84,21 @@ Foram criados dois repositorios no Amazon ECR:
 
 ## Evidencias visuais e tecnicas
 
-Adicionar prints das seguintes evidencias:
+Os prints organizados para entrega estao na pasta `prints/`:
 
-- Aplicacao aberta no navegador.
-- Containers em execucao.
-- Logs de deploy ou execucao.
-- Security group com porta 3000 liberada.
-- EC2 ativa.
-- Elastic Beanstalk com status saudavel.
-- ECS com cluster, task definition, service e task em execucao.
+- `01-ec2-aplicacao-funcionando.png`
+- `02-elastic-beanstalk-aplicacao-funcionando.png`
+- `03-ecs-aplicacao-funcionando.png`
+- `04-ec2-instancia-running.png`
+- `05-ec2-security-group-porta-3000.png`
+- `06-elastic-beanstalk-health-green.png`
+- `07-ecs-cluster.png`
+- `08-ecs-service-running.png`
+- `09-ecs-task-running.png`
+- `10-ecs-task-definition.png`
+- `11-ecr-repositories.png`
+
+As evidencias tecnicas exportadas estao em `aws/evidence/`.
 
 ## Teste local realizado
 
